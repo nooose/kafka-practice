@@ -16,3 +16,4 @@ spring:
         max.in.flight.per.connection: 5
         retries: 3
         enable.idempotence: true
+        interceptor.classes: noose.kafka.ui.message.LoggingProducerInterceptor

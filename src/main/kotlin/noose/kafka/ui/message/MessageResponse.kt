@@ -1,10 +1,11 @@
-package noose.kafka.ui.web
+package noose.kafka.ui.message
 
 import jakarta.validation.constraints.NotBlank
 import noose.kafka.ui.shared.MessageType
 
-data class MessageRequest(
+data class MessageResponse(
     val type: MessageType,
     @field:NotBlank
     val data: String,
-)
+) {
+}

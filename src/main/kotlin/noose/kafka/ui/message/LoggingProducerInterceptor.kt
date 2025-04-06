@@ -15,6 +15,10 @@ class LoggingProducerInterceptor : ProducerInterceptor<String, Any> {
     }
 
     override fun onAcknowledgement(meta: RecordMetadata, exception: Exception?) {
+        if (exception != null) {
+            log.error(exception) { "onAcknowledgement message: ${exception.message}" }
+            return
+        }
         log.info { "onAcknowledgement topic: ${meta.topic()}, partition: ${meta.partition()}, offset: ${meta.offset()}" }
     }
 

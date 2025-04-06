@@ -5,15 +5,26 @@ spring:
   kafka:
     bootstrap-servers:
       - localhost:9092
-    client-id: noose
 
     producer:
+      client-id: producer
       acks: -1
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
       properties:
-        max.in.flight.per.connection: 5
+        max.in.flight.requests.per.connection: 5
         retries: 3
         enable.idempotence: true
         interceptor.classes: noose.kafka.ui.message.LoggingProducerInterceptor
+
+    consumer:
+      client-id: consumer
+      group-id: consumer-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+    properties:
+      spring.json.trusted.packages: "*"
+      spring.json.type.mapping: "noose.kafka.ui.web.MessageRequest:noose.kafka.ui.message.MessageResponse"
+    listener:
+      ack-mode: manual

@@ -25,6 +25,6 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
     properties:
       spring.json.trusted.packages: "*"
-      spring.json.type.mapping: "noose.kafka.ui.web.MessageRequest:noose.kafka.ui.message.MessageResponse"
+      # spring.json.type.mapping: "noose.kafka.ui.web.MessageRequest:noose.kafka.ui.message.MessageResponse"
     listener:
       ack-mode: manual
